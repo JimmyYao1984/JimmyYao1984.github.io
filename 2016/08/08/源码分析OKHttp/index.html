@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>源码分析OKHttp | Jimmy的日记</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="OkHttp3特点OkHttp是一个高效的Http客户端，有如下的特点：
+
+支持HTTP2/SPDY
+socket自动选择最好路线，并支持自动重连
+拥有自动维护的socket连接池，减少握手次数
+拥有队列线程池，轻松写并发
+拥有Interceptors轻松处理请求与响应（比如透明GZIP压缩，LOGGING）
+基于Headers的缓存策略
+
+主要对象
+Connections:对JDK中socket">
+<meta property="og:type" content="article">
+<meta property="og:title" content="源码分析OKHttp">
+<meta property="og:url" content="http://JimmyYao984.github.io/2016/08/08/源码分析OKHttp/index.html">
+<meta property="og:site_name" content="Jimmy的日记">
+<meta property="og:description" content="OkHttp3特点OkHttp是一个高效的Http客户端，有如下的特点：
+
+支持HTTP2/SPDY
+socket自动选择最好路线，并支持自动重连
+拥有自动维护的socket连接池，减少握手次数
+拥有队列线程池，轻松写并发
+拥有Interceptors轻松处理请求与响应（比如透明GZIP压缩，LOGGING）
+基于Headers的缓存策略
+
+主要对象
+Connections:对JDK中socket">
+<meta property="og:image" content="http://7xvn7e.com1.z0.glb.clouddn.com/201608081546.png">
+<meta property="og:image" content="http://7xvn7e.com1.z0.glb.clouddn.com/201608081822.png">
+<meta property="og:updated_time" content="2016-08-08T10:42:48.395Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="源码分析OKHttp">
+<meta name="twitter:description" content="OkHttp3特点OkHttp是一个高效的Http客户端，有如下的特点：
+
+支持HTTP2/SPDY
+socket自动选择最好路线，并支持自动重连
+拥有自动维护的socket连接池，减少握手次数
+拥有队列线程池，轻松写并发
+拥有Interceptors轻松处理请求与响应（比如透明GZIP压缩，LOGGING）
+基于Headers的缓存策略
+
+主要对象
+Connections:对JDK中socket">
+<meta name="twitter:image" content="http://7xvn7e.com1.z0.glb.clouddn.com/201608081546.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Jimmy的日记" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Jimmy的日记</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">study new skill step by step</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://JimmyYao984.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-源码分析OKHttp" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/08/08/源码分析OKHttp/" class="article-date">
+  <time datetime="2016-08-08T06:44:10.000Z" itemprop="datePublished">2016-08-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      源码分析OKHttp
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="OkHttp3特点"><a href="#OkHttp3特点" class="headerlink" title="OkHttp3特点"></a>OkHttp3特点</h2><p>OkHttp是一个高效的Http客户端，有如下的特点：</p>
+<ul>
+<li>支持HTTP2/SPDY</li>
+<li>socket自动选择最好路线，并支持自动重连</li>
+<li>拥有自动维护的socket连接池，减少握手次数</li>
+<li>拥有队列线程池，轻松写并发</li>
+<li>拥有Interceptors轻松处理请求与响应（比如透明GZIP压缩，LOGGING）</li>
+<li>基于Headers的缓存策略</li>
+</ul>
+<h4 id="主要对象"><a href="#主要对象" class="headerlink" title="主要对象"></a>主要对象</h4><ul>
+<li>Connections:对JDK中socket进行了引用计数封装，用来控制socket连接</li>
+<li>Streams：维护HTTP的流，用来对Request/Response进行IO操作</li>
+<li>Calls：HTTP请求任务封装</li>
+<li>StreamAllocation：用来控制Connections/Streams的资源分配与释放</li>
+</ul>
+<h4 id="工作流程的概述"><a href="#工作流程的概述" class="headerlink" title="工作流程的概述"></a>工作流程的概述</h4><p>当我们OkHttpClient.newCall(request)进行execute/enenqueue时，实际是将请求Call放到了Dispatcher中，<br>OkHttp使用Dispatcher进行线程分发，它有两种方法，<br>一个是普通的同步单线程；<br>另一个是使用了队列进行并发任务的分发（Dispatch）与回调。</p>
+<h4 id="1-Dispatcher的结构"><a href="#1-Dispatcher的结构" class="headerlink" title="1.Dispatcher的结构"></a>1.Dispatcher的结构</h4><p>Dispatcher维护了如下变量，用于控制并发的请求：</p>
+<ul>
+<li>maxRequests =  64:最大并发请求数为64</li>
+<li>maxRequestsPerHost = 5:每个主机最大请求数为5</li>
+<li>Dispatcher：分发者，也就是生产者（默认在主线程）</li>
+<li>AsyncCall：队列中需要处理的Runnable（包装了异步回调接口）</li>
+<li>ExecutorService： 消费者池（也就是线程池）</li>
+<li>Deque<readyasynccalls>: 缓存（用数组实现，可自动扩容，无大小限制）</readyasynccalls></li>
+<li>Deque<runningasynccalls>: 正在运行的任务，仅仅是用来引用正在运行的任务以判断并发量，注意它并不是消费者缓存</runningasynccalls></li>
+</ul>
+<p>根据生产者消费者模型的理论，当入队(enqueue)请求时，如果满足(runningRequests &lt; 64 &amp;&amp; runningRequestsPerHost &lt; 5),<br>那么就直接把AsyncCall直接加到runningCalls的队列中，并在线程池中执行。<br>如果消费者缓存满了，就放入readyAsyncCalls进行缓存等待。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">enqueue</span><span class="params">(AsyncCall call)</span> </span>&#123;</span><br><span class="line">   <span class="keyword">if</span> (runningAsyncCalls.size() &lt; maxRequests &amp;&amp; runningCallsForHost(call) &lt; maxRequestsPerHost) &#123;</span><br><span class="line">     runningAsyncCalls.add(call);</span><br><span class="line">     executorService().execute(call);</span><br><span class="line">   &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">     readyAsyncCalls.add(call);</span><br><span class="line">   &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></p>
+<p>当任务执行完成后，调用finished的promoteCalls()函数，手动移动缓存区（可以看出这里是主动清理的，因此不会发生死锁）<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">promoteCalls</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (runningAsyncCalls.size() &gt;= maxRequests) <span class="keyword">return</span>; <span class="comment">// Already running max capacity.</span></span><br><span class="line">    <span class="keyword">if</span> (readyAsyncCalls.isEmpty()) <span class="keyword">return</span>; <span class="comment">// No ready calls to promote.</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (Iterator&lt;AsyncCall&gt; i = readyAsyncCalls.iterator(); i.hasNext(); ) &#123;</span><br><span class="line">      AsyncCall call = i.next();</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (runningCallsForHost(call) &lt; maxRequestsPerHost) &#123;</span><br><span class="line">        i.remove();</span><br><span class="line">        runningAsyncCalls.add(call);</span><br><span class="line">        executorService().execute(call);</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (runningAsyncCalls.size() &gt;= maxRequests) <span class="keyword">return</span>; <span class="comment">// Reached max capacity.</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://7xvn7e.com1.z0.glb.clouddn.com/201608081546.png" alt="Mark-Down"></p>
+<h4 id="线程池基础"><a href="#线程池基础" class="headerlink" title="线程池基础"></a>线程池基础</h4><h5 id="线程池好处都有啥"><a href="#线程池好处都有啥" class="headerlink" title="线程池好处都有啥"></a>线程池好处都有啥</h5><p>线程池的关键在于线程复用以减少非核心任务的损耗。<br>线程池技术正是关注如何缩短或调整T1，T3时间的技术，从而提高服务器程序性能的。<br>通过对线程进行缓存，减少了创建销毁的时间损失。<br>通过控制线程数量的阈值，减少了当线程过少时带来的CPU闲置与线程过多时对JVM的内存与线程切换时系统调用的压力。</p>
+<h5 id="OkHttp配置的线程池"><a href="#OkHttp配置的线程池" class="headerlink" title="OkHttp配置的线程池"></a>OkHttp配置的线程池</h5><p>在OkHttp，使用如下构造了单例线程例：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> ExecutorService <span class="title">executorService</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(executorService == <span class="keyword">null</span>)&#123;</span><br><span class="line">		executorService = <span class="keyword">new</span> ThreadPoolExecutor(<span class="number">0</span>, Integer.MAX_VALUE, <span class="number">60</span> , TimeUnit.SECONDS, <span class="keyword">new</span> SynchronousQueue&lt;Runnable&gt;(),  Util.thread(<span class="string">"OkHttp Dispatcher"</span>, <span class="keyword">false</span>));</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> executorService;</span><br><span class="line">&#125;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>参数说明如下：</p>
+<ul>
+<li>int corePoolSize :最小并发线程数，这里并发同时包括空闲与活动的线程，如果是0的话，空闲一段时间后所有线程将全部被销毁。</li>
+<li>int maximumPoolSize：最大线程数，当任务进来时可以扩充的线程最大数，当大于了这个值就会根据丢弃处理机制来处理。<br>long keepAliveTime：当线程数大于corePoolSize时，多余的空闲线程的最大存活时间，类似于HTTP中的keep-alive<br>TimeUnit unit：时间单位，一般用秒<br>BlockingQueue<runnable> workQueue:工作队列<br>ThreadFactory threadFactory：单个线程的工厂，可以打log，设置Dameo（即当JVM退出时，线程自动结束）等。</runnable></li>
+</ul>
+<p>可以看出，在OkHttp中，构建了一个阈值为[0, Integer.MAX_VALUE]的线程池，它不保留任何最小线程数，随时创建更多的线程数，当线程空闲时只能存活60秒，它使用了一个不存储元素的阻塞工作队列，一个叫做“OkHttp Disptcher”的线程工厂。<br>也就是说，在实际运行中，当收到10个并发请求时，线程池会创建10个线程，当工作完成后，线程池会在60s后相继关闭所有线程。</p>
+<h4 id="反向代理模型"><a href="#反向代理模型" class="headerlink" title="反向代理模型"></a>反向代理模型</h4><p>在OkHttp中，使用了与Nginx类似的反向代理与分发技术，这是典型的单生产多消费者问题。<br>我们知道在Nginx站，用户通过HTTP（SOCKET）访问前置的服务器，服务器会添加Header并自动转发给请求给后端群，接着返回数据结果给用户。<br>通过将工作分配给多个后台服务器，可以提高服务的负载均衡能力，实现非阻塞、高并发连接，避免资源全部放到一台服务器而带来的负载、速度、在线率等影响。<br>而在OkHttp中，非常类似于上述场景，它使用Dispatcher作为任务的转发器，线程池对应多台后置服务器，用AsyncCall对应Socket请求，用Deque<readyasynccalls>对应Nginx的内部缓存。</readyasynccalls></p>
+<h4 id="OkHttp的任务调度"><a href="#OkHttp的任务调度" class="headerlink" title="OkHttp的任务调度"></a>OkHttp的任务调度</h4><p>当我们希望使用OkHttp的异步请求时，一般进行如下构造<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">OkHttpClient client = <span class="keyword">new</span> OkHttpClient.Builder().build();</span><br><span class="line">Request request = <span class="keyword">new</span> Request.Builder()</span><br><span class="line">		.url(<span class="string">"http://qq.com"</span>).get().build();</span><br><span class="line">Client.newCall(request).enqueue(<span class="keyword">new</span> Callback()&#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onFailure</span><span class="params">(Call call, IOException e)</span></span>&#123;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onResponse</span><span class="params">(Call call,Response response)</span> <span class="keyword">throws</span> IOException</span>&#123;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>当HttpClient的请求入队是，根据代码，我们可以发现实际上是Dispatcher进行了入队操作<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">enqueue</span><span class="params">(AsyncCall call)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(runningAsyncCalls.size() &lt; maxRequests &amp;&amp; runningCallsForHost(call) &lt; maxReqeustsPerHost)&#123;</span><br><span class="line">		<span class="comment">//添加正在运行的请求</span></span><br><span class="line">		runningAsyncCalls.add(call);</span><br><span class="line">		<span class="comment">//线程池执行请求</span></span><br><span class="line">		executorService().execute(call);</span><br><span class="line">	&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">		<span class="comment">//添加到缓存队列排队等待</span></span><br><span class="line">		readyAsyncCalls.add(call);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>如果满足条件，那么就直接把AsyncCall直接加到runningCalls的队列中，并在线程池中执行（线程池会根据当前负载自动创建、销毁、缓存相应的线程）。反之就放入readyAsyncCalls进行缓存等待。<br>我们再分析请求元素AsyncCall（它实现了Runnable接口），它内部实现的execute方法如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span> </span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">boolean</span> signalledCallback = <span class="keyword">false</span>;</span><br><span class="line">	<span class="keyword">try</span>&#123;</span><br><span class="line">		<span class="comment">//执行耗时IO任务</span></span><br><span class="line">		Response response = getResponseWithInterceptorChain(forWebSocket);</span><br><span class="line">		<span class="keyword">if</span>(canceled)&#123;</span><br><span class="line">			signalledCallback = <span class="keyword">true</span>;</span><br><span class="line">			<span class="comment">//回调，注意这里回调在线程池中，而不是想当然的在主线程回调</span></span><br><span class="line">			resposneCallback.onFailure(RealCall.<span class="keyword">this</span>, <span class="keyword">new</span> IOException(<span class="string">"Cancelled"</span>));</span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">			signalledCallback = <span class="keyword">true</span>;</span><br><span class="line">			<span class="comment">//回到，同上</span></span><br><span class="line">			responseCallback.onResponse(RealCall.<span class="keyword">this</span>, response);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;<span class="keyword">catch</span>(IOException e)&#123;</span><br><span class="line">		<span class="keyword">if</span>(signalledCallback)&#123;</span><br><span class="line">			logger.log(Level.INFO, <span class="string">"Callback failure for "</span> + toLoggableString(),e):</span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">			responseCallback.onFailure(RealCall.<span class="keyword">this</span>, e);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;<span class="keyword">finally</span>&#123;</span><br><span class="line">		<span class="comment">//最关键的代码</span></span><br><span class="line">		client.dispatcher().finished(<span class="keyword">this</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>当任务执行完成后，无论是否有异常，finally代码段总会执行，也就调用Dispatcher的finished函数，打开源码，发现它将正在运行的任务Call从队列runningAsyncCalls中移除后，接着执行promoteCalls()函数<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">promoteCalls</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="comment">//如果目前是最大负荷运转，接着等</span></span><br><span class="line">	<span class="keyword">if</span>(runningAsyncCalls.size() &gt;= maxRequests) <span class="keyword">return</span>;</span><br><span class="line">	<span class="comment">//如果缓存等待区是空的，接着等</span></span><br><span class="line">	<span class="keyword">if</span>(readyAsyncCall.isEmpty()) <span class="keyword">return</span>;</span><br><span class="line">	<span class="keyword">for</span>(Iterator&lt;AsyncCall&gt; i = readyAsyncCalls.iterator(); i.hasNext();)&#123;</span><br><span class="line">		AsyncCall call = i.next();</span><br><span class="line">		<span class="keyword">if</span>(runningCallsForHost(call) &lt; maxRequestsPerHost)&#123;</span><br><span class="line">			<span class="comment">//将缓存等待区最后一个移动到运行区中，并执行</span></span><br><span class="line">			i.remove();</span><br><span class="line">			runningAsyncCalls.add(call);</span><br><span class="line">			executorService().execute(call);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(runningAsyncCalls.size() &gt;= maxRequests) <span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这样，就主动的把缓存队列向前走了一步，而没有使用互斥锁等复杂编码。</p>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><ul>
+<li>OkHttp采用了Dispatcher技术，类似于Nginx，与线程池配合实现了搞并发，低阻塞的运行</li>
+<li>OkHttp采用Deque作为缓存，按照入队的顺序先进先出</li>
+<li>OkHttp最出彩的地方就是try/finally中调用了finished函数，可以主动控制等待队列的移动，而不是采用锁，极大减少了编码复杂性。<br><br><br><br><br><br><h2 id="Socket管理（StreamAllocation）"><a href="#Socket管理（StreamAllocation）" class="headerlink" title="Socket管理（StreamAllocation）"></a>Socket管理（StreamAllocation）</h2><h4 id="1-选择路线与自动重连-RouteSelector"><a href="#1-选择路线与自动重连-RouteSelector" class="headerlink" title="1.选择路线与自动重连(RouteSelector)"></a>1.选择路线与自动重连(RouteSelector)</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Route <span class="title">next</span><span class="params">()</span> <span class="keyword">throws</span> IOException</span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(!hasNextInetSocketAddress())&#123;</span><br><span class="line">		<span class="keyword">if</span>(!hasNextProxy())&#123;</span><br><span class="line">			<span class="keyword">if</span>(!hasNextPostponed())&#123;</span><br><span class="line">				<span class="keyword">throw</span> <span class="keyword">new</span> NoSuchElementException();</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">return</span> nextPostponed();</span><br><span class="line">		&#125;</span><br><span class="line">		lastProxy = nextProxy();</span><br><span class="line">	&#125;</span><br><span class="line">	lastInetSocketAddress = nextInetSocketAddress();</span><br><span class="line">	</span><br><span class="line">	Route route = <span class="keyword">new</span>  Route(address, lastProxy, lastInetSocketAddress);</span><br><span class="line">	<span class="keyword">if</span>(routeDatabase.shouldPostpone(route))&#123;</span><br><span class="line">		postponsedRoutes.add(route);</span><br><span class="line">		<span class="keyword">return</span> next();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> route;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>如果Proxy为null：</p>
+<ol>
+<li>在构造函数中设置代理为Proxy.NO_PROXY</li>
+<li>如果缓存中的lastInetSocketAddress为空，就通过DNS（默认是Dns.SYSTEM，包装了jdk自带的lookup函数）查询，并保存结果，注意结果是数组，即一个域名有多个IP，这就是自动重连的来源。</li>
+<li>如果还没有查询到就递归调用next查询，直到查询到为止</li>
+<li>一切next都没有枚举到，抛出NoSuchElementException，退出<br><br><br>如果Proxy为HTTP：</li>
+<li>设置socket的ip为代理地址的ip</li>
+<li>设置socket的端口为代理地址的端口</li>
+<li>一切next都没有枚举到，抛出NoSuchElementException，退出<br><br></li>
+</ol>
+<h4 id="2-连接socket链路（RealConnection）"><a href="#2-连接socket链路（RealConnection）" class="headerlink" title="2.连接socket链路（RealConnection）"></a>2.连接socket链路（RealConnection）</h4><p>当地址，端口准备好了，就可以进TCP连接了（也就是三次握手），步骤如下：</p>
+<ol>
+<li>如果连接池中已经存在连接，就从中取出(get)RealConnection,如果没有命中就进入下一步</li>
+<li>根据选择的路线（Route），调用Platform.get().connectSokcet选择当前平台Runtime下最好的socket库进行握手</li>
+<li>强建立成功的RealConnection放入（put）连接池缓存</li>
+<li>如果存在TLS，就根据SSL版本与证书进行安全握手</li>
+<li>构造HttpStream并维护刚刚的socket连接，管理建立完成。</li>
+</ol>
+<h4 id="3-释放socket链路（release）"><a href="#3-释放socket链路（release）" class="headerlink" title="3.释放socket链路（release）"></a>3.释放socket链路（release）</h4><p>如果不再需要（比如通信完成，连接失败）此链路，释放连接（也就是TCP断开）</p>
+<ol>
+<li>尝试从缓存的连接池中删除（remove）</li>
+<li>如果没有命中缓存，就直接调用jdk的socket关闭</li>
+</ol>
+<h4 id="HTTP请求序列化-反序列化"><a href="#HTTP请求序列化-反序列化" class="headerlink" title="HTTP请求序列化/反序列化"></a>HTTP请求序列化/反序列化</h4><h5 id="1-获得HTTP流（httpStream）"><a href="#1-获得HTTP流（httpStream）" class="headerlink" title="1.获得HTTP流（httpStream）"></a>1.获得HTTP流（httpStream）</h5><p>以下为无缓存，无多次302跳转，网络良好，HTTP/1.1下的GET访问实例分析。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">httpStream = connect();</span><br></pre></td></tr></table></figure></p>
+<p>在connect()有非常重要的一步，它通过okio库与远程socket建立了I/O连接，为了更好的理解，我们可以把它看成管道：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//source 用于获取response</span></span><br><span class="line">source = Okio.buffer(Okio.source(rawSocket));</span><br><span class="line"><span class="comment">//sink用于write buffer到server</span></span><br><span class="line">sink = Okio.buffer(Okio.sink(rawSocket));</span><br></pre></td></tr></table></figure></p>
+<p>OkHttp的I/O使用的是Okio库：</p>
+<ul>
+<li>Buffer：Buffer是可变字节，类似于byte[],相当于传输介质</li>
+<li>source： source是Okio库中的输入组件，类似于inputStream,经常在下载中用到。它的重要方法是read(Buffer sink, long byteCount),从流中读取数据。</li>
+<li>sink：sink是okio库中的io输入组件，类似于outputStream，经常用于写到file/socket，它的最重要方法是void write(Buffer source, long byteCount),写数据到Buffer中<br>如果把连接看成管道，-&gt;为管道的方向，如下<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Sink -&gt; Socket/File</span><br><span class="line">Source &lt;- Socket/File</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="2-拼装Raw请求与Headers-writeRequestHeaders"><a href="#2-拼装Raw请求与Headers-writeRequestHeaders" class="headerlink" title="2.拼装Raw请求与Headers(writeRequestHeaders)"></a>2.拼装Raw请求与Headers(writeRequestHeaders)</h4><p>我们通过Rquest.Builder构建了简陋的请求后，可能需要进行一些修饰，这时需要使用interceptors对Request进行进一步的拼装了。<br>拦截器是OkHttp中强大的流程装置，它可以用来监控log，修改请求，修改结果，甚至是对用户透明的GZIP压缩。<br>在OkHttp中，内部维护了一个Interceptors的List，通过InterceptorChain进行多次拦截修改操作。<br><img src="http://7xvn7e.com1.z0.glb.clouddn.com/201608081822.png" alt="Mark-Down"></p>
+<p>请求代码如下，是自增递归(recursive)调用Chain.process(),直到interceptors().size()中的拦截器全部调用完。</p>
+<ol>
+<li>递归调用interceptors，依次入栈对response进行处理</li>
+<li>当全部递归出栈完成后，移交给网络模块（getResponse）<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(index &lt; client.interceptors().size())&#123;</span><br><span class="line">	Interceptor.Chain chain = <span class="keyword">new</span> ApplicationInterceptorChain(index + <span class="number">1</span>, request,forWebSocket);</span><br><span class="line">	Interceptor interceptor = client.interceptors().get(index);</span><br><span class="line">	<span class="comment">//递归调用Chain。process()</span></span><br><span class="line">	Response interceptedResponse = interceptor.intercept(chain);</span><br><span class="line">	<span class="keyword">if</span>(interceptedResponse == <span class="keyword">null</span>)&#123;</span><br><span class="line">		<span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException(<span class="string">"application interceptor"</span> + interceptor + <span class="string">" returned null"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> interceptedResponse;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> getResponse(request, forWebSocket);</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>接下来是正式的网络请求getResponse()，此步骤通过http协议规范将对象中的数据信息序列化为Raw文本：</p>
+<ol>
+<li>在OkHttp中，通过RequestLine，Request，HttpEngine，Header等参数进行序列化操作，也就是拼装参数为socketRaw数据。拼装方法也比较暴力，直接按照RFC协议要求的格式进行concat输出就实现了<br>2.通过sink写入write到socket连接</li>
+</ol>
+<h4 id="1-3-获得响应（readResponseHeaders-Bod）"><a href="#1-3-获得响应（readResponseHeaders-Bod）" class="headerlink" title="1.3 获得响应（readResponseHeaders/Bod）"></a>1.3 获得响应（readResponseHeaders/Bod）</h4><p>此步骤根据获取到的Socket纯文本，解析为Response对象，我们可以看成是一个反序列（通过http协议将Raw文本转成对象）的过程：<br>拦截器的设计：</p>
+<ol>
+<li>自定义网络拦截器请求进行递归入栈</li>
+<li><p>在自定义网络拦截器的intercept中，调用NetworkInterceptorChain的proceed（request），进行真正的网络请求（readNetWorkResponse）</p>
+</li>
+<li><p>接自定义请求递归出栈<br>网络读取（readNetworkResponse）分析：<br>1.读取Raw的第一行，并反序列化为StatusLine对象</p>
+</li>
+<li>以Transfer-Encoding:chuncked的模式传输并组装Body<br>伪代码如下：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">(RawData &lt;- RemoteChannel(www.xx.com, <span class="number">80</span>) <span class="comment">//读取远程的Raw</span></span><br><span class="line">map(<span class="function">func <span class="title">NetworkInterceptorChains</span><span class="params">()</span>)<span class="comment">//云处理</span></span><br><span class="line"><span class="comment">//这里的source应用了HttpEngine，并重写了read方法</span></span><br><span class="line">.<span class="title">map</span><span class="params">(func getTransferStream&#123;&#125;)</span></span><br><span class="line"><span class="comment">// 根据source拼装body对象</span></span><br><span class="line">.<span class="title">map</span><span class="params">(func RealResponseBody()</span>)</span>;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>接下来进行释放socket连接。<br>现在我们就获得response对象，进行进一步Gson操作。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://JimmyYao984.github.io/2016/08/08/源码分析OKHttp/" data-id="cius4sg3e000ii4gfjf5bjutt" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/09/13/RX前传/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          RX前传
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/08/05/doc-ppt-online/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">在线预览ppt doc</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/10/27/RBAC模型/">RBAC模型</a>
+          </li>
+        
+          <li>
+            <a href="/2016/09/16/安全加密认证基础知识/">安全加密认证基础知识</a>
+          </li>
+        
+          <li>
+            <a href="/2016/09/13/RX前传/">RX前传</a>
+          </li>
+        
+          <li>
+            <a href="/2016/08/08/源码分析OKHttp/">源码分析OKHttp</a>
+          </li>
+        
+          <li>
+            <a href="/2016/08/05/doc-ppt-online/">在线预览ppt doc</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Jimmy Yao<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

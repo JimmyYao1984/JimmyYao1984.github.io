@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>安全加密认证基础知识 | Jimmy的日记</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="安全概述在典型的场景中，安全主要用于解决4类需求：
+
+保密(Security/Confidentiality)
+鉴别/认证(Authentication)
+完整性(Integrity)
+不可否认性(non-repudiation)
+
+对称加密概述密钥：分为加密密钥和解密密钥明文：没有进行加密，能够直接代表原文含义的信息密文：经过加密处理之后，隐藏原文含义的信息加密：将明文转换成密文的实施过程解密：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="安全加密认证基础知识">
+<meta property="og:url" content="http://JimmyYao984.github.io/2016/09/16/安全加密认证基础知识/index.html">
+<meta property="og:site_name" content="Jimmy的日记">
+<meta property="og:description" content="安全概述在典型的场景中，安全主要用于解决4类需求：
+
+保密(Security/Confidentiality)
+鉴别/认证(Authentication)
+完整性(Integrity)
+不可否认性(non-repudiation)
+
+对称加密概述密钥：分为加密密钥和解密密钥明文：没有进行加密，能够直接代表原文含义的信息密文：经过加密处理之后，隐藏原文含义的信息加密：将明文转换成密文的实施过程解密：">
+<meta property="og:image" content="http://7xvn7e.com1.z0.glb.clouddn.com/201609161717.png">
+<meta property="og:updated_time" content="2016-09-17T01:05:08.115Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="安全加密认证基础知识">
+<meta name="twitter:description" content="安全概述在典型的场景中，安全主要用于解决4类需求：
+
+保密(Security/Confidentiality)
+鉴别/认证(Authentication)
+完整性(Integrity)
+不可否认性(non-repudiation)
+
+对称加密概述密钥：分为加密密钥和解密密钥明文：没有进行加密，能够直接代表原文含义的信息密文：经过加密处理之后，隐藏原文含义的信息加密：将明文转换成密文的实施过程解密：">
+<meta name="twitter:image" content="http://7xvn7e.com1.z0.glb.clouddn.com/201609161717.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Jimmy的日记" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Jimmy的日记</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">study new skill step by step</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://JimmyYao984.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-安全加密认证基础知识" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/09/16/安全加密认证基础知识/" class="article-date">
+  <time datetime="2016-09-16T09:04:46.000Z" itemprop="datePublished">2016-09-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      安全加密认证基础知识
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="安全概述"><a href="#安全概述" class="headerlink" title="安全概述"></a>安全概述</h2><p>在典型的场景中，安全主要用于解决4类需求：</p>
+<ul>
+<li>保密(Security/Confidentiality)</li>
+<li>鉴别/认证(Authentication)</li>
+<li>完整性(Integrity)</li>
+<li>不可否认性(non-repudiation)</li>
+</ul>
+<h2 id="对称加密概述"><a href="#对称加密概述" class="headerlink" title="对称加密概述"></a>对称加密概述</h2><p>密钥：分为加密密钥和解密密钥<br>明文：没有进行加密，能够直接代表原文含义的信息<br>密文：经过加密处理之后，隐藏原文含义的信息<br>加密：将明文转换成密文的实施过程<br>解密：将密文转换成明文的实施过程<br><img src="http://7xvn7e.com1.z0.glb.clouddn.com/201609161717.png" alt="Mark-Down"></p>
+<p>对称还是非对称，只是K与K’是否相等</p>
+<h3 id="加密的方式"><a href="#加密的方式" class="headerlink" title="加密的方式"></a>加密的方式</h3><ul>
+<li>置换加密</li>
+<li>转置加密</li>
+<li>乘积加密<br>置换加密：原文的字母替换成一个另一个字母， 如：原文：abc 密文：xyz<br>转置加密：字母还是那些字母，位置交换，如：abc 密文：cab<br>乘积加密：置换加密和转置加密的乘积：如：abc 密文：zxy</li>
+</ul>
+<h2 id="非对称加密（公钥密码）概述"><a href="#非对称加密（公钥密码）概述" class="headerlink" title="非对称加密（公钥密码）概述"></a>非对称加密（公钥密码）概述</h2><p>公钥和密钥都有一个产生，公钥公开，私钥保密。<br>公开密钥的算法的最重要两大数学基础：</p>
+<ul>
+<li>建立在分解大数的困难度</li>
+<li>建立在以大素数为模来计算离散对数的困难度</li>
+</ul>
+<h4 id="RSA"><a href="#RSA" class="headerlink" title="RSA"></a>RSA</h4><p>建立在分解大数的困难度<br>公钥/私钥长度 至少1024bit</p>
+<h2 id="密钥交换概述"><a href="#密钥交换概述" class="headerlink" title="密钥交换概述"></a>密钥交换概述</h2><p>对称加密的特点</p>
+<ul>
+<li>高效</li>
+<li>密钥交换的问题</li>
+<li>不如RSA的加密安全程度高，但是当选择256bit的AES，仍然能够胜任绝大多数的安全领域</li>
+</ul>
+<p>非对称加密的特点</p>
+<ul>
+<li>安全性足够高</li>
+<li>没有密钥交换的问题</li>
+<li>效率低，对于大数据加密很慢</li>
+</ul>
+<p>实际的保密会话应用场景</p>
+<ul>
+<li>基于高效的对称加密算法对会话进行加密（AES,256Bit Shared Key）</li>
+<li>会话密钥实时产生且周期性变化</li>
+<li>基于其他足够安全的方式进行会话密钥的传输和交换</li>
+</ul>
+<p>利用公钥密码来交换会话密钥</p>
+<ul>
+<li>实时随机的会话密钥产生</li>
+<li>使用对端的公钥对产生的会话密钥加密并传递给对端</li>
+<li>对端使用私钥解密获取会话密钥</li>
+<li>双方开始基于共享多线程会话密钥进行对称加密的保密会话同性</li>
+</ul>
+<p>Diffie-Hellman密钥交换协议</p>
+<ul>
+<li>基于以大素数为模计算离散对数的困难度</li>
+<li>双方各自选定Key，然后以一定算法变换（使得key不以明文传输）后传输给对方</li>
+<li>双方利用对方交换来的数据和自己选定的key做变换，获得一个一致的结果，作为会话密钥</li>
+</ul>
+<h4 id="Hash算法"><a href="#Hash算法" class="headerlink" title="Hash算法"></a>Hash算法</h4><p>Hash（散列）函数（算法）的定义是：变长的输入变换成定长的输出。<br>常见的Hash算法：MD5（128bit） 、 SHA1（160bit）<br>Hash的特点：</p>
+<ul>
+<li>易变性：即便原始信息发生1bit的变化，Hash的输出将会有不可预知的巨大变化</li>
+<li>不可逆：通过hash结果构造出满足的输入信息是不可能的或者及其困难的。<br>实例：<br>*文件下载时的MD5</li>
+<li>消息传送时尾部额外传MD</li>
+<li>CRC校验的作用和不足</li>
+<li>MD检验消息恶劣环境传输的完整性和未受损坏</li>
+<li>应用程序中对于核心文件/数据库读写的鲁棒性保护，防止掉电和Crash</li>
+</ul>
+<h3 id="HMAC-（Hash-based-Message-Authentication-Code）"><a href="#HMAC-（Hash-based-Message-Authentication-Code）" class="headerlink" title="HMAC （Hash-based Message Authentication Code）"></a>HMAC （Hash-based Message Authentication Code）</h3><p>遇到的问题：<br>直接尾部附带消息摘要的问题（篡改内容的同时篡改摘要）<br>直接对密码做Hash传输的认证的问题（重放攻击）<br>HMAC如何解决这个问题：<br>HMAC就是使用Key对原始消息变换后再进行HASH</p>
+<h2 id="电子签名"><a href="#电子签名" class="headerlink" title="电子签名"></a>电子签名</h2><p>RSA利用私钥签名</p>
+<h4 id="HASH-公钥密码术：成就电子签名"><a href="#HASH-公钥密码术：成就电子签名" class="headerlink" title="HASH+公钥密码术：成就电子签名"></a>HASH+公钥密码术：成就电子签名</h4><ul>
+<li>RSA的低效率特性，导致即便是签名也不适合直接对原始信息进行签名</li>
+<li>利用HASH先完成消息摘要和完整性鉴别的作用</li>
+<li>而后对简单的消息摘要进行基于公钥密码术的签名</li>
+<li>签名一般附着于原始消息尾部或者头部一起发送</li>
+</ul>
+<h2 id="数字证书和PKI"><a href="#数字证书和PKI" class="headerlink" title="数字证书和PKI"></a>数字证书和PKI</h2><p>公钥作为一个字段存储于数字证书中<br>证书的交换和传输即可传输/交换公钥<br>利用签名来保护数字证书本身<br>数字时代的信任关系： 一个受信任的证书列表</p>
+<h3 id="证书链和PKI"><a href="#证书链和PKI" class="headerlink" title="证书链和PKI"></a>证书链和PKI</h3><p>人的信任链： 孔子-&gt;孔子的徒弟-&gt;孔子徒弟的徒弟<br>数字时代的信任链：证书链<br>证书签名的不同点：根证书自签名，非根证书父签名<br>证书的限制：</p>
+<ul>
+<li>约束</li>
+<li>用途</li>
+<li>有效期</li>
+</ul>
+<p>基于可信任证书的认证方式被广泛的应用在现代安全领域，比如：WIFI、HTTPS<br>在HTTPS中，典型的Client对Server的认证和鉴别基于可信任列表</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://JimmyYao984.github.io/2016/09/16/安全加密认证基础知识/" data-id="cius4sg32000hi4gfqspafv0k" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/10/27/RBAC模型/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          RBAC模型
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/09/13/RX前传/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">RX前传</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/10/27/RBAC模型/">RBAC模型</a>
+          </li>
+        
+          <li>
+            <a href="/2016/09/16/安全加密认证基础知识/">安全加密认证基础知识</a>
+          </li>
+        
+          <li>
+            <a href="/2016/09/13/RX前传/">RX前传</a>
+          </li>
+        
+          <li>
+            <a href="/2016/08/08/源码分析OKHttp/">源码分析OKHttp</a>
+          </li>
+        
+          <li>
+            <a href="/2016/08/05/doc-ppt-online/">在线预览ppt doc</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Jimmy Yao<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

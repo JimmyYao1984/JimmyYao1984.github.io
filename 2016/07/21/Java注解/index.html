@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Java注解 | Jimmy的日记</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="揭开Java注解的面纱什么是注解？从JDK1.5被引入到Java，它提供了一种机制，这种机制允许在编写代码的同时可以直接编写元数据。
+介绍注解就是代码的元数据，它们包含了代码自身的信息。注解可以被用在包、类、方法、变量、参数上。自Java8开始，有一种注解几乎可以被放在代码的任何位置，叫做类型注解。被注解的代码并不会直接被注解影响。这只会向第三系统提供关于自己的信息以用于不同的需求。注解会被编译至">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java注解">
+<meta property="og:url" content="http://JimmyYao984.github.io/2016/07/21/Java注解/index.html">
+<meta property="og:site_name" content="Jimmy的日记">
+<meta property="og:description" content="揭开Java注解的面纱什么是注解？从JDK1.5被引入到Java，它提供了一种机制，这种机制允许在编写代码的同时可以直接编写元数据。
+介绍注解就是代码的元数据，它们包含了代码自身的信息。注解可以被用在包、类、方法、变量、参数上。自Java8开始，有一种注解几乎可以被放在代码的任何位置，叫做类型注解。被注解的代码并不会直接被注解影响。这只会向第三系统提供关于自己的信息以用于不同的需求。注解会被编译至">
+<meta property="og:updated_time" content="2016-07-21T07:53:45.804Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java注解">
+<meta name="twitter:description" content="揭开Java注解的面纱什么是注解？从JDK1.5被引入到Java，它提供了一种机制，这种机制允许在编写代码的同时可以直接编写元数据。
+介绍注解就是代码的元数据，它们包含了代码自身的信息。注解可以被用在包、类、方法、变量、参数上。自Java8开始，有一种注解几乎可以被放在代码的任何位置，叫做类型注解。被注解的代码并不会直接被注解影响。这只会向第三系统提供关于自己的信息以用于不同的需求。注解会被编译至">
+  
+    <link rel="alternate" href="/atom.xml" title="Jimmy的日记" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Jimmy的日记</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">study new skill step by step</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://JimmyYao984.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Java注解" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/07/21/Java注解/" class="article-date">
+  <time datetime="2016-07-21T03:24:17.000Z" itemprop="datePublished">2016-07-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Java注解
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="揭开Java注解的面纱"><a href="#揭开Java注解的面纱" class="headerlink" title="揭开Java注解的面纱"></a>揭开Java注解的面纱</h2><h4 id="什么是注解？"><a href="#什么是注解？" class="headerlink" title="什么是注解？"></a>什么是注解？</h4><p>从JDK1.5被引入到Java，它提供了一种机制，这种机制允许在编写代码的同时可以直接编写元数据。</p>
+<h4 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h4><p>注解就是代码的元数据，它们包含了代码自身的信息。<br>注解可以被用在包、类、方法、变量、参数上。<br>自Java8开始，有一种注解几乎可以被放在代码的任何位置，叫做类型注解。<br>被注解的代码并不会直接被注解影响。这只会向第三系统提供关于自己的信息以用于不同的需求。<br>注解会被编译至class文件中，而且在运行时被处理程序提取出来用于业务逻辑。<br>当然，创建在运行时不可用的注解也是可能的，甚至可以创建只在源文件中可用，在编译时不可用的注解。</p>
+<h4 id="消费器"><a href="#消费器" class="headerlink" title="消费器"></a>消费器</h4><p>理解注解的目的以及如何使用它都会带来困难，因为注解本身并不包含任何功能逻辑，它们也不会影响自己注解的代码，那么，它们到底为什么而存在呢？<br>注解消费器，它们是利用被注解代码并根据注解信息产生不同行为的系统或者应用程序。<br>例如，在Java自带的内建注解（元注解）中，消费器是执行被注解代码的JVM。<br>还有其他，如JUnit，消费器是读取，分析被注解代码的Junit处理程序，它还可以决定测试单元和方法执行顺序。<br>消费器使用Java中的反射机制来读取和分析被注解的源代码。</p>
+<h4 id="注解语法和元素"><a href="#注解语法和元素" class="headerlink" title="注解语法和元素"></a>注解语法和元素</h4><p>声明一个注解需要使用”@”作为前缀,这便向编译器说明，该元素为注解。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Annotation</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">annotatedMethod</span><span class="params">()</span></span>&#123;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>上述的注解名称为Annotation，它正在注解annotatedMethod方法。<br>编译器会处理它。注解可以以键值对的形式持有有很多元素，即注解的属性：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Annoation</span>(</span><br><span class="line">	info = <span class="string">"I am an annotation"</span>,</span><br><span class="line">	counter = <span class="string">"55"</span></span><br><span class="line">)</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">annotatedMethod</span><span class="params">()</span></span>&#123;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>如果注解只包含一个元素（或者只需要指定一个元素的值，其它使用默认），可以像这样声明：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Annotation</span>(<span class="string">"I am annotation"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">annotatedMethod</span><span class="params">()</span></span>&#123;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>如果没有元素需要被指定，则不需要括号。多个注解可以使用在同一代码上，例如类：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Annoation</span>(info = <span class="string">"U a u O"</span>)</span><br><span class="line"><span class="meta">@Annoation</span>2</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AnnotatedClass</span></span>&#123;...&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="在什么地方使用"><a href="#在什么地方使用" class="headerlink" title="在什么地方使用"></a>在什么地方使用</h4><p>注解基本上可以在Java程序的每一个元素上使用：类、域、方法、包、变量，等待。<br>自Java8，诞生了通过类型注解的理念。<br>在此之前，注解是限于在前面讨论的元素的声明上使用。<br>从此，无论是类型哈市声明都可以使用注解，就像：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@MyAnnotation</span> String str = <span class="string">"danibuiza"</span>;</span><br></pre></td></tr></table></figure></p>
+<h4 id="使用案例"><a href="#使用案例" class="headerlink" title="使用案例"></a>使用案例</h4><p>注解可以满足许多要求，最普遍的是：</p>
+<ul>
+<li>向编译器提供信息：注解可以被编译器用来根据不同的规则产生警告，甚至错误。一个例子是Java8中@FunctionalInterface注解，这个注解使得编译器校验被注解的类，检查它是否是一个正确的函数式接口。</li>
+<li>文档：注解可以被软件应用程序计算代码的质量例如：FindBugs、PMD或者自动生成报告，例如：用来Jenkins、Jira、Teamcity。</li>
+<li>代码生成：注解可以使用代码中展示的元数据信息来自动生成代码或者xml文件，一个不错的例子是JAXB。</li>
+<li>运行时处理：在运行时检查的注解可以用做不同的目的，像单元测试（Junit），依赖注入（Spring），校验，日志（Log4j），数据访问（Hibernate）等等。</li>
+</ul>
+<h4 id="内建注解"><a href="#内建注解" class="headerlink" title="内建注解"></a>内建注解</h4><p>Java语言自带了一系列的注解。<br>这个清单只涉及了Java语言最核心的包，未包含标准JRE中所有包和库如JAXB或Servlet规范。<br>以下讨论到的注解中有一些被称之为Meta注解，它们的目的注解其他注解，并且包含关于其他注解的信息。<br>@Retention：这个注解在其他注解上，并用来说明如何存储已被标记的注解。这是一种元注解，用来标记注解并提供注解的信息。可能的值是：</p>
+<ul>
+<li>SOURCE：表明这个注解会被编译器忽略，并只会保留在源代码中。</li>
+<li>CLASS：表明这个注解会通过编译驻留在CLASS文件，但会被JVM在运行时忽略，正因为如此，其在运行时不可见。</li>
+<li>RUNTIME：表示这个注解会被JVM获取，并在运行时通过反射获取。</li>
+</ul>
+<p>@Target：这个注解用于限制某个元素可以被注解的类型。例如：</p>
+<ul>
+<li>ANNOTATION_TYPE 表示该注解可以应用到其他注解上</li>
+<li>CONSTRUCTOR 表示可以使用到构造器上</li>
+<li>FIELD 表示可以使用到域或属性上</li>
+<li>LOCAL_VARIABLE表示可以使用到局部变量上</li>
+<li>METHOD可以使用到方法级别的注解上</li>
+<li>PACKAGE可以使用到包声明上</li>
+<li>PARAMETER可以使用到方法的参数上</li>
+<li>TYPE可以使用到一个类的任何元素上</li>
+</ul>
+<p>@Documented：被注解的元素将会作为Javadoc产生的文档中的内容。<br>注解都默认不会成为文档中的内容。<br>这个注解可以对其它注解使用。<br>@Inherited：在默认情况下，注解不会被子类继承。<br>被此注解会被所有子类继承。这个注解可以对类使用<br>@Deprecated：说明被标记的元素不应该再度使用。<br>这个注解会让编译器产生警告消息。<br>可以使用到方法，类和域上。<br>相应的解释和原因，包括另一个可取代的方法应该同时和这个注解使用。<br>@SuppressWarnings：说明编译器不会针对指定的一个或多个原因产生警告。<br>例如：如果我们不想因为存在尚未使用的私有方法而得到警告可以这样做。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SuppressWarnings</span>(<span class="string">"unused"</span>)</span><br><span class="line"><span class="function"><span class="keyword">private</span> String <span class="title">myNotUsedMethod</span><span class="params">()</span></span>&#123;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>通常，编译器会因为没调用该方法而产生警告；用了注解印制了这种行为。该注解需要一个或多个参数来指定抑制的警告类型。<br>@Override：向编译器说明被注解元素是重写的父类的一个元素。在重写父类元素的时候此注解并非强制性的，不过可以在重写错误时帮助编译器产生错误以提醒我们。<br>@SafeVarargs：断言方法或者构造器的代码不会对参数进行不安全的操作。在Java的后续版本中，使用这个注解时将会令编译器产生一个错误在编译期间防止潜在的不安全操作。</p>
+<h4 id="Java-8与注解"><a href="#Java-8与注解" class="headerlink" title="Java 8与注解"></a>Java 8与注解</h4><p>Java8带来了一些优势，同样注解框架的能力也得到了提升。<br>@Repeatable注解，关于类型注解的声明，函数式接口注解@FunctionInterface（与Lambda结合使用）。<br>*@Repeatable：说明该注解标识的注解可以多次使用到同一个元素的声明上。<br>看一个使用的例子。首先我们创造一个能容纳重复的注解的容器：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="meta">@Target</span>(ElementType.TYPE_USE)</span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> RepeatedValues&#123;</span><br><span class="line">	CanBeRepeated[] value();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>接着，创建注解本身，然后标记@Repeatable<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="meta">@Target</span>(ElementType.TYPE_USE)</span><br><span class="line"><span class="meta">@Repeatable</span>(RepeatedValues.class)</span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> CanBeRepeated&#123;</span><br><span class="line">	<span class="function">String <span class="title">value</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>最后，我们可以这样重复地使用：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@CanBeRepeated</span> (<span class="string">"the color is green"</span>)</span><br><span class="line"><span class="meta">@CanBeRepeated</span> (<span class="string">"the color is red"</span>)</span><br><span class="line"><span class="meta">@CanBeRepeated</span> (<span class="string">"the color is blue"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RepeatableAnnotated</span></span><br><span class="line"></span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>如果我们尝试去掉@Repeatable<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="meta">@Target</span>(ElementType.TYPE_USE)</span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> CannotBeRepeated</span><br><span class="line">&#123;</span><br><span class="line">	<span class="function">String <span class="title">value</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">@CanBeRepeated</span>(<span class="string">"info"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RepeatableAnnotatedWrong</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>自Java8开始，我们可以在类型上使用注解。<br>由于我们在任何地方都可以使用类型，包括new操作符，casting,implements,throw等等。<br>注解可以改善对Java代码的分析并且保证更加健壮的类型检查。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SuppressWarnings</span>(<span class="string">"unused"</span>)</span><br><span class="line"><span class="function">pubilc <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">	<span class="comment">//type def</span></span><br><span class="line">	<span class="meta">@TypeAnnotated</span></span><br><span class="line">	String cannotBeEmpty = <span class="keyword">null</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//type</span></span><br><span class="line">	List&lt;<span class="meta">@TypeAnnotated</span> String&gt; myList = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//values</span></span><br><span class="line">	String myString = <span class="keyword">new</span> <span class="meta">@TypeAnnotated</span> String(<span class="string">"this is annotated in java 8"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">methodAnnotated</span><span class="params">(@TypeAnnotated <span class="keyword">int</span> parameter)</span></span>&#123;</span><br><span class="line">	System.out.println(<span class="string">"do nothing"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>@FunctionalInterfce:这个注解表示一个函数式接口元素。<br>函数式接口是一种只有一个抽象方法（非默认）的接口。<br>编译器会检查被注解元素，如果不符，就会产生错误。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SuppressWarnings</span>(<span class="string">"unused"</span>)</span><br><span class="line">MyCustomInterface myFuncInterface = <span class="keyword">new</span> MyCustomInterface()</span><br><span class="line">&#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">doSomething</span><span class="params">(<span class="keyword">int</span> param)</span></span>&#123;</span><br><span class="line">		<span class="keyword">return</span> param * <span class="number">10</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">@SuppressWarnings</span>(<span class="string">"unused"</span>)</span><br><span class="line">MyCustomInterface myFuncInterfceLambdas = (x) -&gt; (x * <span class="number">10</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@FunctionalInterface</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">MyCustomInterface</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">doSomething</span><span class="params">(<span class="keyword">int</span> param)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这个注解可以被使用到类、接口、枚举和注解本身。<br>它的被JVM保留并在runtime可见，这个是它的声明：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Documented</span></span><br><span class="line"><span class="meta">@Retention</span>(value = RUNTIME)</span><br><span class="line"><span class="meta">@Target</span>(value = TYPE)</span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> FunctionalInterface</span><br></pre></td></tr></table></figure></p>
+<h4 id="自定义注解"><a href="#自定义注解" class="headerlink" title="自定义注解"></a>自定义注解</h4><p>首先，定义一个注解：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> CustomAnnotationClass</span><br></pre></td></tr></table></figure></p>
+<p>这样创建了一个新的注解类型名为CustomAnnotationClass。<br>关键字@interface说明这是一个自定义注解的定义。</p>
+<p>之后，你需要为此注解定义一对强制性的属性，保留策略和目标。<br>还有一些其他属性可以定义，不过两个是最基本和重要的。<br>所以，我们为自定义的注解设置属性：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="meta">@Target</span>(ElementType.TYPE)</span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> CustomAnnotationClass implements CustomAnnotationMethod</span><br></pre></td></tr></table></figure></p>
+<p>在保留策略中RUNTIME告诉编译器这个注解应该被JVM保留，并且能通过反射在运行时分析。<br>通过TYPE我们又设置该注解可以被使用到任何类的元素上。<br>之后，我们定义两个注解的成员：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="meta">@Target</span>(ElementType.TYPE)</span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> CustomAnnotationClass</span><br><span class="line">&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">author</span><span class="params">()</span> <span class="keyword">default</span> "xxxx"</span>;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">date</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>以上我们仅定义了默认值为’xxxx’的author属性和没有默认值的date属性。<br>我们应强调所有的方法声明都不能有参数和throw语句。<br>这个返回值的类型被限制为之前提过的字符串、类、枚举，注解和存储这些类型的数组。<br>现在我们可以像这样使用刚创建的自定义注解：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@CustomAnnotationClass</span>(date = <span class="string">"2014-05-05"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AnnotatedClass</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在另一种类似的用法中我们可以创建一种注解方法的注解，使用Target METHOD：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="meta">@Target</span>(ElementType.METHOD)</span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> CustomAnnotationMethod</span><br><span class="line">&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">author</span><span class="params">()</span> <span class="keyword">default</span> "xxxx"</span>;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">date</span><span class="params">()</span></span>;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">description</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这种注解可以使用在方法声明上：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@CustomAnnotationMethod</span>(date = <span class="string">"2016-07-21"</span>, descripton = <span class="string">"annotated method"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">annotatedMethod</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="string">"nothing niente"</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">@CustomAnnotationMethod</span>(author = <span class="string">"Jimmy"</span>, date = <span class="string">"2016-07-21"</span>, description = <span class="string">"annotated method"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">annotatedMethodFromAFriend</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="string">"nothing niente"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>有很多其他属性可以用在自定义注解上，但是目标（Target）和保留策略（Retention Policy）是最重要的两个。</p>
+<h4 id="获取注解"><a href="#获取注解" class="headerlink" title="获取注解"></a>获取注解</h4><p>Java反射API包含了许多方法在运行时从类、方法或者其它元素获取注解。<br>接口AnnotatedElement包含了大部分重要的方法，如下：</p>
+<ul>
+<li>getAnnotations(): 返回该元素的所有注解，包括没有显示定义该元素上的注解。</li>
+<li>isAnnotationPresent(annotation):检查传入的注解是否存在于当前元素。</li>
+<li>getAnnotation(class):按照传入的参数获取指定类型的注解。返回null说明当前元素不带有此注解。<br>class通过java.lang.Class被实现，java.lang.reflect.Method和java.lang.reflect.Field，所以可以基本上被和任何Java元素使用。<br>现在写一个程序，从一个类和它的方法中读取所有的存在的注解：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">	Class&lt;AnnotatedClass&gt; object = AnnotatedClass.class;</span><br><span class="line">	Annotation[] annotations = object.getAnnotations();</span><br><span class="line">	<span class="keyword">for</span>(Annotation annotation : annotations)&#123;</span><br><span class="line">		System.out.println(annotation);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(object.isAnnotationPresent(CustomAnnotationClass.class))&#123;</span><br><span class="line">		Annotation annotation = object.getAnnotation(CustomAnnotationClass.class);</span><br><span class="line">		System.out.println(annotation);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>( Method method : object.getDeclatredMethods())&#123;</span><br><span class="line">		<span class="keyword">if</span>(method.isAnnotationPresent(CustomAnnnotationMethod.class))&#123;</span><br><span class="line">			Annotation annotation = method.getAnnotation(CustomAnnotionMethod.class);</span><br><span class="line">			System.out.println(annotation);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>在这个程序中，可以看到getAnnotations()方法来获取所有某个对象（方法、类）上的所有注解的用法。<br>展示了怎样使用isAnnotationPresent()方法和getAnnotation()方法检查是否存在特定的注解，和如何获取它。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://JimmyYao984.github.io/2016/07/21/Java注解/" data-id="cius4sg1q0002i4gfh8460uiq" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/08/05/doc-ppt-online/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          在线预览ppt doc
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/07/16/FFMpeg入门/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">FFMpeg入门</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/10/27/RBAC模型/">RBAC模型</a>
+          </li>
+        
+          <li>
+            <a href="/2016/09/16/安全加密认证基础知识/">安全加密认证基础知识</a>
+          </li>
+        
+          <li>
+            <a href="/2016/09/13/RX前传/">RX前传</a>
+          </li>
+        
+          <li>
+            <a href="/2016/08/08/源码分析OKHttp/">源码分析OKHttp</a>
+          </li>
+        
+          <li>
+            <a href="/2016/08/05/doc-ppt-online/">在线预览ppt doc</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Jimmy Yao<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

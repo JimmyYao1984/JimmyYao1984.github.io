@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Jimmy Say Hello World</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="知识点
+线程的创建和运行
+线程信息的获取和设置
+线程的中断
+线程中断的控制
+线程的休眠和恢复
+等待线程的终止
+守护线程的创建和运行
+线程中不可控异常的处理
+线程局部变量的使用
+线程的分组
+线程组中不可控异常的处理
+使用工厂类创建线程
+
+不得不讲的并发与并行所有的并发处理都有排队等候，唤醒，执行至少三个这样的步骤.所以并发肯定是宏观概念，在微观上他们都是序列被处理的，只不过资源不会在某一个上被阻塞(">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Jimmy Say Hello World">
+<meta property="og:url" content="http://JimmyYao984.github.io/2016/04/21/一步一步精通Java多线程/index.html">
+<meta property="og:site_name" content="Jimmy Say Hello World">
+<meta property="og:description" content="知识点
+线程的创建和运行
+线程信息的获取和设置
+线程的中断
+线程中断的控制
+线程的休眠和恢复
+等待线程的终止
+守护线程的创建和运行
+线程中不可控异常的处理
+线程局部变量的使用
+线程的分组
+线程组中不可控异常的处理
+使用工厂类创建线程
+
+不得不讲的并发与并行所有的并发处理都有排队等候，唤醒，执行至少三个这样的步骤.所以并发肯定是宏观概念，在微观上他们都是序列被处理的，只不过资源不会在某一个上被阻塞(">
+<meta property="og:updated_time" content="2016-04-29T08:40:07.776Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Jimmy Say Hello World">
+<meta name="twitter:description" content="知识点
+线程的创建和运行
+线程信息的获取和设置
+线程的中断
+线程中断的控制
+线程的休眠和恢复
+等待线程的终止
+守护线程的创建和运行
+线程中不可控异常的处理
+线程局部变量的使用
+线程的分组
+线程组中不可控异常的处理
+使用工厂类创建线程
+
+不得不讲的并发与并行所有的并发处理都有排队等候，唤醒，执行至少三个这样的步骤.所以并发肯定是宏观概念，在微观上他们都是序列被处理的，只不过资源不会在某一个上被阻塞(">
+  
+    <link rel="alternate" href="/atom.xml" title="Jimmy Say Hello World" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Jimmy Say Hello World</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">study new skill step by step</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://JimmyYao984.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-一步一步精通Java多线程" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/04/21/一步一步精通Java多线程/" class="article-date">
+  <time datetime="2016-04-21T02:52:39.850Z" itemprop="datePublished">2016-04-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h2><ul>
+<li>线程的创建和运行</li>
+<li>线程信息的获取和设置</li>
+<li>线程的中断</li>
+<li>线程中断的控制</li>
+<li>线程的休眠和恢复</li>
+<li>等待线程的终止</li>
+<li>守护线程的创建和运行</li>
+<li>线程中不可控异常的处理</li>
+<li>线程局部变量的使用</li>
+<li>线程的分组</li>
+<li>线程组中不可控异常的处理</li>
+<li>使用工厂类创建线程<br><br><br><br></li>
+</ul>
+<h2 id="不得不讲的并发与并行"><a href="#不得不讲的并发与并行" class="headerlink" title="不得不讲的并发与并行"></a>不得不讲的并发与并行</h2><p>所有的并发处理都有排队等候，唤醒，执行至少三个这样的步骤.所以并发肯定是宏观概念，在微观上他们都是序列被处理的，只不过资源不会在某一个上被阻塞(一般是通过时间片轮转)，所以在宏观上看多个几乎同时到达的请求同时在被处理。<br>并发的实质是一个物理CPU(也可以多个物理CPU) 在若干道程序之间多路复用，并发性是对有限物理资源强制行使多用户共享以提高效率。<br>并行性指两个或两个以上事件或活动在同一时刻发生。在多道程序环境下，并行性使多个程序同一时刻可在不同CPU上同时执行。<br><br><br><br></p>
+<h2 id="线程的创建和运行"><a href="#线程的创建和运行" class="headerlink" title="线程的创建和运行"></a>线程的创建和运行</h2><p>Java提供了两种方式来创建线程：<br>1)继承Thread类，并覆盖run()方法<br>2）创建一个是实现Runnable接口的类。<br>下面以第二种方式创建10个简单的线程，每个线程完成计算和打印乘以1-10后的结果。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Calculator</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;</span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">int</span> number;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">Calculator</span><span class="params">(<span class="keyword">int</span> number)</span></span>&#123;</span><br><span class="line">       <span class="keyword">this</span>.number = number;</span><br><span class="line">   &#125; </span><br><span class="line">   </span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</span><br><span class="line">       <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">10</span>; i++)&#123;</span><br><span class="line">           System.out.printf(<span class="string">"%s: %d * %d = %d\n"</span>,  Thread.currentThread().getName(), number, i, i*number);</span><br><span class="line">       &#125;</span><br><span class="line">   &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>接着编写一个主类，进行测试。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span></span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">       <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">10</span>; i++)&#123;</span><br><span class="line">           Calculator calculator = <span class="keyword">new</span> Calculator(i);</span><br><span class="line">           Thread thread = <span class="keyword">new</span> Thread(calculator);</span><br><span class="line">           thread.start();</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>简单说明下，对一个实现了Runnable接口的类来说，创建Thread对象并不会创建一个新的执行线程，同样，调用它的run()方法，也不会创建一个新的执行线程。只有当Thread调用start()方法时，才会创建一个新的执行线程来调用run()方法。<br>当一个程序的所有线程都运行完成时，更明确的说，当所有非守护线程都运行完成的时候，这个Java程序将宣告结束。<br>如果main线程结束了，而其余的线程仍将继续执行它们的任务，直到运行结束。但如果某一个线程调用了System.exit()指令来结束程序的执行，则所有的线程都将结束。<br><br><br></p>
+<h2 id="线程信息的获取和设置"><a href="#线程信息的获取和设置" class="headerlink" title="线程信息的获取和设置"></a>线程信息的获取和设置</h2><p>Thread类有一些保存信息的属性，这些属性可以用来标识线程，如显示线程的状态、控制线程的优先级。<br>ID：保存了线程的唯一标识。<br>Name：保存了线程的名称。<br>Priority：保存了线程的优先级。从1到10，由低优先级到高优先级。<br>Status：保存了线程的状态。在Java中，有6种状态，new \ runnable \ blocked \ waiting \ timewaiting \ terminated。<br>下面我们来打印下线程的这些标识。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Calculator</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> number;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Calculator</span><span class="params">(<span class="keyword">int</span> number)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.number = number;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">10</span>; i++)&#123;</span><br><span class="line">            System.out.println(<span class="string">"%s: %d * %d = %d\n"</span>, Thread.currentThread().getName(), number, i, i*number);  </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Minimum Priority:%s\n"</span>, Thread.MIN_PRIORITY);</span><br><span class="line">        System.out.println(<span class="string">"Normal Priority:%s\n"</span>, Thread.NORM_PRIORITY);</span><br><span class="line">        System.out.println(<span class="string">"Maximum Priority:%s\n"</span>, Thread.MAX_PRIORITY);</span><br><span class="line">        </span><br><span class="line">        Thread threads[] = <span class="keyword">new</span> Thread&#123;<span class="number">10</span>];</span><br><span class="line">        Thread.State status[] = <span class="keyword">new</span> Thread.State[<span class="number">10</span>];</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)&#123;</span><br><span class="line">            threads[i] = <span class="keyword">new</span> Thread(<span class="keyword">new</span> Calculator(i));</span><br><span class="line">            <span class="keyword">if</span>((i%<span class="number">2</span>) == <span class="number">0</span>)&#123;</span><br><span class="line">                threads[i].setPriority(Thread.MAX_PRIORITY);</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                threads[i].setPriority(Thread.MIN_PRIORITY);</span><br><span class="line">            &#125;</span><br><span class="line">            threads[i].setName(<span class="string">"Thread "</span> +i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//创建PrintWriter对象，用来把线程的状态演变写入到文件中</span></span><br><span class="line">        <span class="comment">//try()&#123;&#125;catch&#123;&#125; 这个是Jdk7的新语法，可以看到这样代码简洁很多，不用在finally&#123;&#125;里关闭流。</span></span><br><span class="line">        <span class="keyword">try</span>( FileWriter file = <span class="keyword">new</span> FileWriter(<span class="string">".\\data\\log.txt"</span>); </span><br><span class="line">             PrintWriter pw = <span class="keyword">new</span> PrintWriter(file);)&#123;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)&#123;</span><br><span class="line">                pw.println(<span class="string">"Main: Status of Thread "</span> + i + <span class="string">" : "</span> + threads[i].getState());</span><br><span class="line">                status[i] = threads[i].getState();</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; <span class="number">10</span>; i++)&#123;</span><br><span class="line">                threads[i].start();</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">boolean</span> finish = <span class="keyword">false</span>;</span><br><span class="line">            <span class="keyword">while</span>(!finish)&#123;</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)&#123;</span><br><span class="line">                    <span class="keyword">if</span>(threads[i].getState() != status[i])&#123;</span><br><span class="line">                        writeThreadInfo(pw, threads[i], status[i]);</span><br><span class="line">                        status[i] = threads[i].getState();</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                </span><br><span class="line">                finish = <span class="keyword">true</span>;</span><br><span class="line">                </span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; <span class="number">10</span>; i++)&#123;</span><br><span class="line">                    finish = finish &amp;&amp; (threads[i].getState() == State.TERMINATED);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;            </span><br><span class="line">        &#125;<span class="keyword">catch</span> (IOException e)&#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">writeThreadInfo</span><span class="params">(PrintWriter pw, Thread thread, State state)</span></span>&#123;</span><br><span class="line">        pw.printf(<span class="string">"Main : Id %d - %s\n"</span>, thread.getId(), thread.getName());</span><br><span class="line">        pw.printf(<span class="string">"Main : Priority: %d\n"</span>, thread.getPriority());</span><br><span class="line">        pw.printf(<span class="string">"Main : Old state: %s\n"</span>, state);</span><br><span class="line">        pw.printf(<span class="string">"Main : New state: %s\n"</span>, thread.getState());</span><br><span class="line">        pw.printf(<span class="string">"Main : ************************************\n"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样每个线程的状态演变都记录在log.txt里。<br>Thread类的属性存储了线程的所有信息，JVM使用线程的Priority来决定某一时刻由哪个线程来使用CPU，并根据线程的情景为它们设置实际的状态。<br>如果Thread类没有取名字，JVM会自动分配一个名字给它，如Thread-XX。<br>Thread的ID和状态是只读的，不能自己set。另外，setPriority()方法的值必须是1~10之内，超过这个访问会报IllegalArgumentException异常。<br><br><br><br></p>
+<h2 id="线程的中断"><a href="#线程的中断" class="headerlink" title="线程的中断"></a>线程的中断</h2><p>前面提到过单个线程结束并不会使进程结束，只有当所有的线程都结束了，这个进程才会结束。中途结束进程可以调用System.exit()，那么中途结束线程呢？Java也提供了中断机制。这种机制要求线程检查它是否被中断了，然后决定是不是影响这个中断请求。换句话说，线程是允许忽略中断请求并继续运行的。</p>
+<p>接下来,还是以代码来说明<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PrimeGenerator</span> <span class="keyword">extends</span> <span class="title">Thread</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">long</span> number = <span class="number">1L</span>;</span><br><span class="line">        <span class="keyword">while</span>(<span class="keyword">true</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(isPrime(number))&#123;</span><br><span class="line">                System.out.println(<span class="string">"Number %d is Prime\n"</span>, number);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(isInterrupted())&#123;</span><br><span class="line">                System.out.println(<span class="string">"The Prime Generator has been Interrupted\n"</span>);</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            number++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span><br><span class="line">    *是否是质数</span><br><span class="line">    */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">isPrime</span><span class="params">(<span class="keyword">long</span> number)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(number &lt;= <span class="number">2</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">long</span> i = <span class="number">2</span>; i &lt; number; i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>((number % i )==<span class="number">0</span>)&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p> 主类<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        Thread task = <span class="keyword">new</span> PrimeGenerator();</span><br><span class="line">        task.start();</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            TimeUnit.SECONDS.sleep(<span class="number">5</span>);</span><br><span class="line">        &#125;<span class="keyword">catch</span>(InterruptedException e)&#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        task.interrupt();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>Thread类有一个表明线程被中断与否的属性，它存放的是布尔值。线程的interrupt()方法被调用时，这个属性就会被设置为true。isInterrupted()方法只是返回这个属性的值。<br><br><br><br></p>
+<h2 id="线程中断的控制"><a href="#线程中断的控制" class="headerlink" title="线程中断的控制"></a>线程中断的控制</h2><p>已经学会中断线程，也学会了在线程对象中去控制这个中断。在实际编码中，如果线程实现了复杂的算法并且分布在几个方法中，或者线程里有递归调用等，我们就得使用一个更好的机制来控制线程的中断。Java提供了InterruptedException异常。当检查到线程中断时，就抛出这个异常，然后在run()中捕获并处理这个异常。<br>主程序<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        FileSearch searcher = <span class="keyword">new</span> FileSearch(<span class="string">"C:\\"</span>, <span class="string">"autoexec.bat"</span>);</span><br><span class="line">        Thread thread = <span class="keyword">new</span> Thread(searcher);</span><br><span class="line">        thread.start();</span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            TimeUnit.SECONDS.sleep(<span class="number">10</span>);</span><br><span class="line">        &#125;<span class="keyword">catch</span>(InterruptedException e)&#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        thread.interrupt();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这样不管递归调用多少次，只要抛出InterruptedException，就结束线程，释放资源。<br><br><br><br></p>
+<h2 id="线程的休眠和恢复"><a href="#线程的休眠和恢复" class="headerlink" title="线程的休眠和恢复"></a>线程的休眠和恢复</h2><p>线程的休眠可以通过调用sleep()方法来实现。sleep()方法接受整型数值作为参数，以表明线程挂起执行的毫秒数。<br>sleep()方法的另一种使用方式是通过TimeUnit枚举类进行调用。这个方法也使用Thread类的sleep()方法来使当前线程休眠，但是它接受的参数单位是秒，最终会被转化成毫秒。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FileClock</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)&#123;</span><br><span class="line">            System.out.println(<span class="string">"%s\n"</span>, <span class="keyword">new</span> Date());</span><br><span class="line">            <span class="keyword">try</span>&#123;</span><br><span class="line">                TimeUnit.SECONDS.sleep(<span class="number">1</span>);</span><br><span class="line">            &#125;<span class="keyword">catch</span>(InterruptedException e)&#123;</span><br><span class="line">                System.out.println(<span class="string">"The FileClock has been interrupted"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>主类<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        FileClock clock = FileClock();</span><br><span class="line">        Thread thread = <span class="keyword">new</span> Thread(clock);</span><br><span class="line">        </span><br><span class="line">        thread.start();</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            TimeUnit.SECONDS.sleep(<span class="number">5</span>);</span><br><span class="line">        &#125;<span class="keyword">catch</span>(InterruptedException e)&#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        thread.interrupt();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>如果休眠中线程被中断，该方法就会立即抛出InterruptedException异常，而不需要等待到线程休眠时间结束<br><br><br><br></p>
+<h2 id="等待线程的终止"><a href="#等待线程的终止" class="headerlink" title="等待线程的终止"></a>等待线程的终止</h2><p>有时候，我们必须等待某个线程的终止，这个时候可以使用Thread类的join()方法。当一个线程对象的join()方法被调用时，调用它的线程将被挂起，直到这个线程对象完成它的任务。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DataSourcesLoader</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;    </span><br><span class="line">    <span class="meta">@override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Begining data sources loading: %s\n"</span>, <span class="keyword">new</span> Date());</span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            TimeUnit.SECONDS.sleep(<span class="number">4</span>);</span><br><span class="line">        &#125;<span class="keyword">catch</span>(InterruptedException e)&#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">"Data sources loading has finished: %s\n"</span>, <span class="keyword">new</span> Date());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NetworkConnectionsLoader</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Begining network connections loading:%s\n"</span>, <span class="keyword">new</span> Date());</span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            TimeUnit.SECONDS.sleep(<span class="number">6</span>);</span><br><span class="line">        &#125;<span class="keyword">catch</span>(InterruptedException e)&#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">"Network connections loading has finished: %s\n"</span>, <span class="keyword">new</span> Date());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        DataSourcesLoader dsLoader = <span class="keyword">new</span> DataSourcesLoader();</span><br><span class="line">        Thread thread1 = <span class="keyword">new</span> Thread(dsLoader, <span class="string">"DataSourceThread"</span>);</span><br><span class="line">        thread1.start();</span><br><span class="line">        </span><br><span class="line">        NetworkConnectionsLoader ncLoader = <span class="keyword">new</span> NetworkConnectionsLoader();</span><br><span class="line">        Thread thread2 = <span class="keyword">new</span> Thread(ncLoader, <span class="string">"NetworkConnectionLoader"</span>);</span><br><span class="line">        thread2.start();</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            thread1.join();</span><br><span class="line">            thread2.join();</span><br><span class="line">        &#125;<span class="keyword">catch</span>(InterruptedException e)&#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        System.out.println(<span class="string">"Main: Configuration has been loader: %s\n"</span>, <span class="keyword">new</span> Date());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行发现，只有当DataSourcesLoader线程运行结束，NetworkConnectionsLoader线程也运行结束的时候，主线程对象才会继续运行并且打印出最终的信息。<br>另外，java还提供了另外两个形式的join()方法：join(long milliseconds) join(long milliseconds, long nanos)<br>这两种形式的join返回比join()方法多一个条件，就是指定的时间到时，线程也将继续执行。<br><br><br><br></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://JimmyYao984.github.io/2016/04/21/一步一步精通Java多线程/" data-id="cinlgydcg0001kcgfo3pko5eu" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/04/21/开始我的博客/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">开始我的博客</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/04/21/一步一步精通Java多线程/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/21/开始我的博客/">开始我的博客</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Jimmy Yao<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
